@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title%}
+	Login - UrgentCode Forum
+{% endblock %}
+
+{% block body%}
+	
+	<div class="parallax main">
+        <div class="section main">
+            <div class="grid">
+                <img class="logo login" src="/static/images/urgent.png" alt="UrgentCode Logo">
+                <h1 class="title light">Urgent Code Forum</h1>
+                	
+                <div class="login-form">
+                	<h3>Login no forum</h3>
+                	<label>
+                		<input type="text" name="user" placeholder="Username ou email">
+                	</label>
+					<div class="clear"></div>
+                	<label>
+                		<input type="password" name="password" placeholder="Senha">
+                	</label>
+
+                	<button>Login</button>
+                	<button class="signUp">Cadastrar-se</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
