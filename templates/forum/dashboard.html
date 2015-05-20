@@ -1,0 +1,16 @@
+{% for forum in forumsList%}
+	Forum
+	{{forum.name}} <br>
+	{{forum.question}} <br>
+	
+	--Respostas <br>
+	{% for reply in forum.replies %}
+		{{reply.message}} <br>
+		
+		----Likes <br>
+		{% for like in reply.likes %}
+			{{like.username}}
+		{% endfor %}
+
+	{% endfor %}
+{% endfor %}
