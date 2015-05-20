@@ -1,16 +1,51 @@
-{% for forum in forumsList%}
-	Forum
-	{{forum.name}} <br>
-	{{forum.question}} <br>
-	
-	--Respostas <br>
-	{% for reply in forum.replies %}
-		{{reply.message}} <br>
-		
-		----Likes <br>
-		{% for like in reply.likes %}
-			{{like.username}}
-		{% endfor %}
+{% extends "base.html" %}
 
-	{% endfor %}
-{% endfor %}
+{% block body %}
+
+<header>
+	<img class="logo header" src="/static/images/urgent.png" alt="UrgentCode Logo">
+</header>
+
+<div class="section">
+    <div class="grid">
+        <div class="col-1-3">
+        	<div class="list">
+	        	<h2>Seus Forums</h2>
+		       	<ul class="forums">
+		       		{% for forum in forumsList%}
+		       		<li class="forum">
+		       			
+						<a href="javascript:void(0)">
+							<h3>{{forum.name}}</h3>
+							<p class="description">
+								{{forum.description}}
+							</p>
+							{% if forum.repliesLength > 0 %}
+								<div class="repliesNotify">
+									{{forum.repliesLength}}
+								</div>
+							{% endif %}
+						</a>
+				
+		       		</li>
+		       		{% endfor %}
+		       	</ul>
+	        </div>
+        </div>
+
+        <div class="col-1-3">
+        	<div class="list">
+        		<h2>Seguindo</h2>
+        	</div>
+        </div>
+
+        <div class="col-1-3">
+        	<div class="list">
+        		<h2>Seu Perfil</h2>
+        	</div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

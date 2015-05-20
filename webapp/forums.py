@@ -18,6 +18,23 @@ def index(request):
 		user = users.get(request.session['user'])
 		c = {u"user" : user.username,u"forumsList": ForumsList.findUserForums(user.username)}
 		c.update(csrf(request))
+		return render_to_response("index.html",c)
+
+def dashboard(request):
+
+	try:
+		request.session['login'] == True
+	except KeyError:
+		request.session['login'] = False
+
+
+
+	if not request.session['login']:
+		return redirect("/forum/login")
+	else:
+		user = users.get(request.session['user'])
+		c = {u"user" : user.username,u"forumsList": ForumsList.findUserForums(user.username)}
+		c.update(csrf(request))
 		return render_to_response("forum/dashboard.html",c)
 
 		
@@ -26,7 +43,7 @@ def loginView(request):
 	if request.method == "GET":
 
 		if request.session['login'] :
-			return redirect("/forum")
+			return redirect("/forum/dashboard")
 		else:
 			c = {}
 			c.update(csrf(request))
@@ -42,7 +59,7 @@ def loginView(request):
 			request.session['user'] = users.username(user)
 
 			
-			return redirect("/forum")
+			return redirect("/forum/dashboard")
 		else:
 
 			c = {u"error" : True}
@@ -52,4 +69,9 @@ def loginView(request):
 def logout(request):
 	request.session['login'] = False
 	request.session['user'] = ""
-	return redirect("/forum")
+	return redirect("/forum/login")
+
+
+def view(request,user,forum):
+
+	return HttpResponse(user + "<br>" + forum)

@@ -3,11 +3,80 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+header {
+  background-color: #4299d8;
+  padding: 15px;
+  height: 80px;
+  line-height: 80px;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+.logo.login {
+  width: 100px;
+}
+.logo.header {
+  width: 50px;
+}
+
 .section {
   width: 100vw;
   height: 100vh;
   padding-top: 50px;
   text-align: center;
+}
+.section .list {
+  text-align: left;
+}
+.section .list h2 {
+  font-size: 25px;
+}
+.section .list li {
+  position: relative;
+  padding: 20px;
+  border-radius: 0px;
+  border-bottom: 1px solid #cccccc;
+  transition: all 300ms ease;
+}
+.section .list li a {
+  text-decoration: none;
+  color: black;
+  transition: all 300ms ease;
+}
+.section .list li h3 {
+  font-size: 20px !important;
+}
+.section .list li p {
+  margin-top: 10px;
+  font-size: 14px !important;
+  color: #666666;
+  transition: all 300ms ease;
+}
+.section .list li .repliesNotify {
+  position: absolute;
+  left: -15px;
+  top: 15px;
+  color: white;
+  background-color: #00c84f;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  transition: all 300ms ease;
+}
+.section .list li:hover {
+  background-color: #4299d8;
+  border-radius: 5px;
+  border-bottom: none;
+}
+.section .list li:hover a, .section .list li:hover p {
+  color: white;
+}
+.section .list li:hover .repliesNotify {
+  background-color: #006e2b;
 }
 .section.main {
   background-color: rgba(6, 90, 39, 0.4);
@@ -32,12 +101,9 @@ body {
   border: 1px solid #00c84f;
 }
 .section .logo {
-  width: 150px;
-  height: auto;
   margin-top: 100px;
 }
 .section .logo.login {
-  width: 100px;
   margin-top: 40px;
 }
 .section .title {

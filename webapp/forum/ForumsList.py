@@ -13,6 +13,7 @@ class ForumDetails(object):
 		self.description = description
 		self.question = question
 		self.replies = replies
+		self.repliesLength = len(replies)
 		
 
 
