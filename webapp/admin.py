@@ -3,9 +3,11 @@
 from django.contrib import admin
 from . import models
 
+class ForumsAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'url': ('name',)}
 
 admin.site.register(models.Users)
-admin.site.register(models.Forums)
-admin.site.register(models.Subscribers)
+admin.site.register(models.Forums,ForumsAdmin)
+admin.site.register(models.Followers)
 admin.site.register(models.Answers)
 admin.site.register(models.Likes)

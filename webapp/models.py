@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class Users(models.Model):
 	id = models.AutoField(verbose_name="Id",unique=True,primary_key=True)
@@ -25,6 +26,7 @@ class Forums(models.Model):
 	
 	name = models.CharField(verbose_name="Nome", max_length=45)
 	creator = models.ForeignKey(Users,verbose_name="Criador")
+	url = models.SlugField(verbose_name="URL")
 	descriptions = models.CharField(verbose_name="Descrição",max_length=512)
 	question = models.TextField(verbose_name="Pergunta")
 
@@ -36,19 +38,23 @@ class Forums(models.Model):
 	def __str__(self):
 		return self.name.encode("utf8")
 
+	def save(self, *args, **kwargs):
+		self.url = slugify(self.name.encode("utf8"))
+		super(Forums, self).save(*args, **kwargs)
 
-class Subscribers(models.Model):
+
+class Followers(models.Model):
 	id = models.AutoField(verbose_name="Id",unique=True,primary_key=True)
 
+	user = models.ForeignKey(Users,verbose_name="Usuários")
 	forum = models.ForeignKey(Forums,verbose_name="Forum")
-	subscribers = models.ManyToManyField(Users,verbose_name="Inscritos")
 
 	class Meta:
-		verbose_name = "Inscrito"
-		verbose_name_plural = "Inscritos"
+		verbose_name = "Seguidor"
+		verbose_name_plural = "Seguidores"
 
 	def __str__(self):
-		return self.forum.name.encode("utf8")
+		return self.forum.name.encode("utf8") + " - " + self.user.name.encode("utf8")
 
 class Answers(models.Model):
 	id = models.AutoField(verbose_name="Id",unique=True,primary_key=True)

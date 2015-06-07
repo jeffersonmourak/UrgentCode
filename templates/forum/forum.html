@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<header>
+		<img class="logo header" src="/static/images/urgent.png" alt="UrgentCode Logo">
+	</header>
+
+	<div class="section">
+    	<div class="grid">
+    		<h2>{{forum.name}}</h2>
+    		<p>{{ forum.description }}</p>
+    		<p>Criado por {{ forum.creator.name }} {{ forum.creator.surname }}</p>
+		
+			<br>
+
+			<p>{{ forum.question }}</p>
+
+			<ul>
+				{% for reply in forum.replies %}
+					<li> {{reply.user.username}} - {{reply.message}} <br>
+
+					{% if reply.iliked %}
+						<a href="/actions/unlike/{{forum.creator.username}}/{{forum.url}}/{{reply.id}}">Unlike</a>
+					{% else %}
+						<a href="/actions/like/{{forum.creator.username}}/{{forum.url}}/{{reply.id}}">Like</a>
+					{% endif %}
+
+					{{ reply.likesLength }} {% if reply.likesLength > 1 %} Pessoas curtiram {% else %} pessoa curtiu {% endif %}</li>
+				{% endfor %}
+				<li>
+					<p>Deixe sua resposta</p>
+					<form action="/actions/reply/{{forum.creator.username}}/{{forum.url}}" method="post">
+	                	{% csrf_token %}
+						<label>
+	                        <textarea type="text" name="answer" placeholder="Resposta"></textarea>
+	                    </label>
+
+	                    <button type="submit" class="signUp">Responder</button>
+                    </form>
+				</li>
+			</ul>
+
+    	</div>
+    </div>
+
+{% endblock %}

@@ -146,7 +146,11 @@ label {
   display: block;
 }
 
-label input {
+label textarea {
+  height: 100px;
+}
+
+label input, label textarea {
   padding: 9px;
   border-radius: 3px;
   border: none;
@@ -156,7 +160,7 @@ label input {
   font-family: "Montserrat", sans-serif;
   transition: all 300ms ease;
 }
-label input:focus, label input:active {
+label input:focus, label input:active, label textarea:focus, label textarea:active {
   outline: 0;
   border: 1px solid #00c84f;
 }

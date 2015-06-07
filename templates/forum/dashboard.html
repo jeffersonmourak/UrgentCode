@@ -15,7 +15,7 @@
 		       		{% for forum in forumsList%}
 		       		<li class="forum">
 		       			
-						<a href="javascript:void(0)">
+						<a href="/forum/{{forum.creator.username}}/{{forum.url}}">
 							<h3>{{forum.name}}</h3>
 							<p class="description">
 								{{forum.description}}
@@ -36,6 +36,25 @@
         <div class="col-1-3">
         	<div class="list">
         		<h2>Seguindo</h2>
+        		<ul class="forums">
+		       		{% for forum in following%}
+		       		<li class="forum">
+		       			
+						<a href="/forum/{{forum.creator.username}}/{{forum.url}}">
+							<h3>{{forum.name}}</h3>
+							<p class="description">
+								{{forum.description}}
+							</p>
+							{% if forum.repliesLength > 0 %}
+								<div class="repliesNotify">
+									{{forum.repliesLength}}
+								</div>
+							{% endif %}
+						</a>
+				
+		       		</li>
+		       		{% endfor %}
+		       	</ul>
         	</div>
         </div>
 
